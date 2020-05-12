@@ -1,0 +1,13 @@
+#acces .contenu
+{
+	display: flex;
+	justify-content: space-between;
+}
+#acces .box
+{
+	margin: 16px;
+}
+#acces .info
+{
+	max-width: 40%;
+}

@@ -1,0 +1,22 @@
+#filmo
+{
+
+}
+#filmo .contenu
+{
+	display: flex;
+	flex-direction: column;
+}
+#filmo .box
+{
+	margin: 16px;
+	display: flex;
+}
+#filmo .box div
+{
+	margin-right: 64px;
+}
+#filmo img
+{
+	width: 300px;
+}

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Trente-deux jours avec Picasso</title>
+	<link rel="stylesheet" type="text/css" href="style/front/main.css">
+	<link rel="stylesheet" type="text/css" href="style/front/menu.css">
+	<link rel="stylesheet" type="text/css" href="style/front/accueil.css">
+	<link rel="stylesheet" type="text/css" href="style/front/gal.css">
+	<link rel="stylesheet" type="text/css" href="style/front/bio.css">
+	<link rel="stylesheet" type="text/css" href="style/front/filmo.css">
+	<link rel="stylesheet" type="text/css" href="style/front/noteCom.css">
+	<link rel="stylesheet" type="text/css" href="style/front/acces.css">
+</head>
+<body>
+	<nav>
+		<div id="menu">
+			<a href="#accueil">Accueil</a>
+			<a href="#gal">Galerie</a>
+			<a href="#bio">Biographie</a>
+			<a href="#filmo">Filmographie</a>
+			<a href="#noteCom">Note du Commissaire</a>
+			<a href="#acces">Plan d'accès</a>
+		</div>
+		<div id="menu-footer">
+			<a id="foot" href="#cgu">Mentions légales</a>
+		</div>
+	</nav>
+	<div id="accueil">
+		<div class="contenue">
+			<h1 id="titreExpo"></h1>
+			<h2 id="dateExpo"></h2>
+		</div>
+	</div>
+	<div id="page">
+		<div class="fullscreen" id="gal">
+			<div class="titre">Galerie</div>
+			<div class="contenu">
+				<div class="box color1">
+					<div><img id="img1" src="image/chargement.gif"></div>
+					<p id="txt1">Chargement de l'image en cours...</p>
+				</div>
+				<div class="box color2">
+					<div><img id="img2" src="image/chargement.gif"></div>
+					<p id="txt2">Chargement de l'image en cours...</p>
+				</div>
+				<div class="box color3">
+					<div><img id="img3" src="image/chargement.gif"></div>
+					<p id="txt3">Chargement de l'image en cours...</p>
+				</div>
+				<div class="box color4">
+					<div><img id="img4" src="image/chargement.gif"></div>
+					<p id="txt4">Chargement de l'image en cours...</p>
+				</div>
+				<div class="box color1">
+					<div><img id="img5" src="image/chargement.gif"></div>
+					<p id="txt5">Chargement de l'image en cours...</p>
+				</div>
+				<div class="box color2">
+					<div><img id="img6" src="image/chargement.gif"></div>
+					<p id="txt6">Chargement de l'image en cours...</p>
+				</div>
+			</div>
+		</div>
+		<div class="fullscreen" id="bio">
+			<div class="titre">Biographie</div>
+			<div class="contenu">
+				<div class="resume">
+					<div class="box color3">
+						<span id="bioResu"></span>
+					</div>
+					<div class="box color4">
+						<h3 id="nomArtiste"></h3>
+						<div>
+							<img id="portrail"></img>
+						</div>
+					</div>
+				</div>
+				<div class="box color1">
+					<span id="bioDetaille"></span>
+				</div>
+			</div>
+		</div>
+		<div class="fullscreen" id="filmo">
+			<div class="titre">Filmographie</div>
+			<div class="contenu" id="films">
+				<div class="box color2">
+					<div>
+                        <img src="" id="imgFilm1">
+					</div>
+					<div>
+                        <span id="film1"></span>
+					</div>
+				</div>
+				<div class="box color3">
+					<div>
+                        <img src="" id="imgFilm2">
+					</div>
+					<div>
+						<span id="film2"></span>
+					</div>
+				</div>
+				<div class="box color4">
+					<div>
+                        <img src="" alt="" id="imgFilm3">
+					</div>
+					<div>
+						<span id="film3"></span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="fullscreen" id="noteCom">
+			<div class="titre">Note du Commissaire</div>
+			<div class="box color1">
+				<span id="noteComm"></span>
+			</div>
+		</div>
+		<div class="fullscreen" id="acces">
+			<div class="titre">Plan d'accès</div>
+			<div class="contenu">
+				<div class="box info color2">
+					<span id="noteMusee"></span>
+				</div>
+				<div class="box color3">
+					<iframe id="map" src="" width="700" height="700" frameborder="0" allowfullscreen=""></iframe>
+				</div>
+			</div>
+		</div>
+		<div class="fullscreen" id="cgu">
+			<div class="titre">Mentions légales</div>
+			<div class="box color4">
+
+			</div>
+		</div>
+	</div>
+
+	<script src="js/jquery.js"></script>
+	<script src="js/gal.js"></script>
+    <script>
+		
+
+		$("#noteMusee").html("Chargement");
+		$("#map").attr("src","");
+		$("#").html("Chargement");
+		$("#").html("Chargement");
+		$
+
+
+		// Expo
+		$("#titreExpo").html("Titre de l'exposition");
+		$("#dateExpo").html("Date de l'exposition");
+		$("#noteComm").html("Chargement");
+
+		// Artiste
+        $("#nomArtiste").html("Nom de l'artiste");
+        $("#portrail").attr("src","image/chargement.gif");
+        $("#bioResu").html("Résumé de la biographie");
+        $("#bioDetaille").html("Biographie complète");
+
+		// Oeuvre
+
+		// Film
+		var modeleFilm = "<div class=\"box color2\"><div><img src=\"\" id=\"imgFilm1\"></div><div><span id=\"film1\"></span></div></div>";
+		$("#films").innerHTML += modeleFilm;
+
+		// Autre
+
+
+    </script>
+</body>
+</html>
