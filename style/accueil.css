@@ -9,6 +9,10 @@
 	align-content: 	center;
 	margin-left: 380px;
 }
+#accueil h2
+{
+	margin-left: 480px;
+}
 #accueil .contenue
 {
 	/*margin-top: 10%;*/

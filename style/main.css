@@ -5,7 +5,7 @@ body
 	font-family: Arial;
 	background-image: url('guernica.jpg');
 	font-size: 1.2em;
-	background-image: url(../../image/guernica.jpg);
+	background-image: url(../image/guernica.jpg);
 	background-attachment: fixed;
 }
 #page
