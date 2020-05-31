@@ -19,16 +19,18 @@
 
 <div style="margin: 5rem;">
     <div class="form-inline mb-5">
-        <label class="mr-2" for="selectExpo">Sélectionner une exposition</label>
-        <select class="custom-select mr-sm-2" id="selectExpo"></select>
-        <span class="mr-sm-2" id="expoStatus">Status : En cours</span>
-        <div class="mt-2">
+        <div class="mt-2 form-inline">
+            <label class="mr-2" for="selectExpo">Sélectionner une exposition</label>
+            <select class="custom-select mr-sm-2" id="selectExpo"></select>
+            <span class="mr-sm-2" id="expoStatus">Status : En cours</span>
+        </div>
+        <div class="mt-2 form-inline">
             <button href="" class="btn btn-danger mr-sm-2">Supprimer</button>
             <button href="" class="btn btn-primary mr-sm-2">Créer une nouvelle exposition</button>
         </div>
     </div>
     <div class="ml-5">
-        <div class="form-inline mb-4">
+        <div class="form-inline">
             <div class="mt-2 form-inline">
                 <label class="mr-2" for="titreExpo">Titre</label>
                 <input type="text" class="form-control mr-sm-5" id="titreExpo"/>
@@ -41,13 +43,16 @@
                 <label class="mr-2" for="dateFin">Date de fin</label>
                 <input type="date" class="form-control mr-sm-5" id="dateFin"/>
             </div>
-            <div class="mt-2">
+            <div class="mt-2 form-inline">
                 <button value="0" id="showNoteComm" class="btn btn-secondary mr-sm-3">Afficher la note du commissaire</button>
                 <button type="button" id="expoUpdate" class="btn btn-primary">Mettre à jour</button>
             </div>
         </div>
-        <div class="form mb-5" id="noteComm"></div>
-        <div class="ml-5">
+        <div class="form mt-2" id="noteComm">
+            <label for="textNoteComm">Note du commissaire</label>
+            <textarea id="textNoteComm" class="form-contrl"></textarea>
+        </div>
+        <div class="ml-5 mt-5">
             <div class="form-inline">
                 <label class="mr-2" for="selectArtiste">Artiste sélectionné</label>
                 <select class="custom-select mr-sm-2 col-md-3" id="selectArtiste"></select>
