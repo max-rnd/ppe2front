@@ -11,21 +11,23 @@ $(function () {
             expoUpdate();
             $("#showNoteComm").click(function () {
                 idExpo = $("#selectExpo").children("option:selected").val();
+                var newVal = new Object();
+                newVal['noteComm'] = val[idExpo-1]['noteComm'];
                 if ($("#showNoteComm").attr("value") == 0) {
                     $("#showNoteComm").attr("value", 1);
                     $("#showNoteComm").html("Masquer la note du commissaire");
                     $("#noteComm").append(
                         "<label id=\"label-noteComm\" for=\"content-noteComm\">Note du commissaire</label>" +
                         "<textarea id=\"textNoteComm\" class=\"form-control\">" +
-                            val[idExpo-1]['noteComm'] +
+                        newVal['noteComm'] +
                         "</textarea>"
                     );
-                    CKEDITOR.replace('textNoteComm');
+                    //CKEDITOR.replace('textNoteComm');
                 }
                 else {
                     $("#showNoteComm").attr("value", 0);
                     $("#showNoteComm").html("Afficher la note du commissaire");
-                    val[idExpo-1]['noteComm'] = CKEDITOR.instances.textNoteComm.getData();
+                    newVal['noteComm'] = CKEDITOR.instances.textNoteComm.getData();
                     $("#label-noteComm").remove();
                     $("#textNoteComm").remove();
                     $("#cke_textNoteComm").remove();
@@ -33,35 +35,58 @@ $(function () {
             });
             $("#expoUpdate").click(function () {
                 idExpo = $("#selectExpo").children("option:selected").val();
-                if ($("#showNoteComm").attr("value") == 1)
-                    val[idExpo-1]['noteComm'] = CKEDITOR.instances.textNoteComm.getData();
-
-                checkValididy($("#dateDebut"), $("#formDateDebut"), val[idExpo]-1, 'dateDebut');
-                checkValididy($("#dateFin"), $("#formDateFin"), val[idExpo]-1, 'dateFin');
-                checkValididy($("#titreExpo"), $("#formTitre"), val[idExpo]-1, 'titre');
 
                 if (
-                    checkValididy($("#dateDebut"), $("#formDateDebut"), val[idExpo]-1, 'dateDebut') &&
-                    checkValididy($("#dateFin"), $("#formDateFin"), val[idExpo]-1, 'dateFin') &&
-                    checkValididy($("#titreExpo"), $("#formTitre"), val[idExpo]-1, 'titre')
+                    $("#titreExpo").val().trim() == "" ||
+                    $("#dateDebut").val() == "" ||
+                    $("#dateFin").val() == ""
                 ) {
-                    $.ajax({
-                        type: 'POST',
-                        url: 'http://localhost:8080/expo/' + idExpo + '/edit',
-                        data: val[idExpo],
-                        success: function (val) {
-                            if (val['id'] == null)
-                                $("body").prepend(
-                                    "<div class=\"alert alert-danger\" role=\"alert\">L'exposition n'a pas pu être mis à jour</div>"
-                                );
-                            else
-                                $("body").prepend(
-                                    "<div class=\"alert alert-success\" role=\"alert\">L'exposition a bien été mis à jour</div>"
-                                );
-                        }
-                    });
+                    if ($("#titreExpo").val().trim() == "")
+                        $("#titreExpo").addClass("is-invalid");
+                    if ($("#dateDebut").val() == "")
+                        $("#dateDebut").addClass("is-invalid");
+                    if ($("#dateFin").val() == "")
+                        $("#dateFin").addClass("is-invalid");
+                } else {
+                    if (
+                        $("#titreExpo").val() != val[idExpo-1]['titre'] ||
+                        $("#dateDebut").val() != val[idExpo-1]['dateDebut'] ||
+                        $("#dateFin").val() != val[idExpo-1]['dateFin'] ||
+                        true
+                    ) {
+                        $("body").prepend(
+                            "<div class=\"alert alert-warning\" role=\"alert\">L'exposition n'a pas pu être mis à jour</div>"
+                        );
+                    } else {
+                        newVal['titre'] = $("#titreExpo").val().trim();
+                        newVal['dateDebut'] = $("#dateDebut").val();
+                        newVal['dateFin'] = $("#dateFin").val();
+                        newVal['noteComm'] = val[idExpo-1]['noteComm'];
+                        if ($("#showNoteComm").attr("value") == 1)
+                            newVal['noteComm'] = CKEDITOR.instances.textNoteComm.getData();
+                        $.ajax({
+                            type: 'POST',
+                            url: 'http://localhost:8080/expo/' + idExpo + '/edit',
+                            data: newVal,
+                            success: function (val) {
+                                alert("ça marche");
+                                if (val['id'] == null)
+                                    $("body").prepend(
+                                        "<div class=\"alert alert-danger\" role=\"alert\">L'exposition n'a pas pu être mis à jour</div>"
+                                    );
+                                else
+                                    $("body").prepend(
+                                        "<div class=\"alert alert-success\" role=\"alert\">L'exposition a bien été mis à jour</div>"
+                                    );
+                            }
+                        });
+                    }
                 }
             });
+
+            updateVerif($("#titreExpo"));
+            updateVerif($("#dateDebut"));
+            updateVerif($("#dateFin"));
         },
         error: function () {
             alert("Erreur de chargement");
@@ -89,17 +114,9 @@ $(function () {
             }
         });
     }
-    function checkValididy(c, f, val, name) {
-        var v = true;
-        if (c.html() != "")
-            val[name] = c.html();
-        else {
-            c.addClass("is-invalid");
-            f.append(
-                "<div class=\"invalid-feedback\">Ce champs est obligatoire</div>"
-            );
-            v = false;
-        }
-        return v;
+    function updateVerif(champs) {
+        champs.change(function () {
+            champs.removeClass("is-invalid");
+        });
     }
 });
